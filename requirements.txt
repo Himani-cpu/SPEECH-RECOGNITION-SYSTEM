@@ -1,11 +1,9 @@
-streamlit==1.35.0
-gtts
+streamlit
 pydub
-numpy
-speechrecognition
-audio-recorder-streamlit
+gtts
 deep-translator
-openai-whisper
+audio-recorder-streamlit
 torch
-torchaudio
-ffmpeg-python
+transformers
+whisper
+openai-whisper
