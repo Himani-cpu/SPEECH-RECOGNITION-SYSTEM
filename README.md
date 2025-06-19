@@ -36,6 +36,21 @@
  📱 Mobile-friendly and responsive UI
 
 
+## 🧠 Tech Stack
+
+💻 Streamlit for interactive UI
+
+📨 Whisper or SpeechRecognition for transcription
+
+🔄 GoogleTranslator for multilingual translation
+
+📢 gTTS for voice playback
+
+🎧 Pydub, audio-recorder-streamlit for audio processing
+
+
+
+
 ## 📂 Folder Structure
 
 
@@ -54,6 +69,8 @@
 🎼 **requirements.txt**         # Python Dependencies
 
 📓 **README.md**                # Project Description and Usage
+
+📦 **Packages.txt**
 
 
 ## 📱 How to Run the App
