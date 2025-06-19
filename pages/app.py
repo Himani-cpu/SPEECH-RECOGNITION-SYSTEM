@@ -196,7 +196,7 @@ audio_bytes = audio_recorder(text="Click to Record", recording_color="#e8b62c", 
 def load_whisper_model():
     return whisper.load_model("base")  # Options: tiny, base, small, medium, large
 
- model = whisper.load_model("base")
+model = whisper.load_model("base")
 
 def transcribe_audio(file_path):
     result = model.transcribe(file_path)
