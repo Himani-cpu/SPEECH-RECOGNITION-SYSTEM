@@ -256,8 +256,9 @@ if audio_bytes or uploaded_file:
         except Exception as e:
             st.error(f"❌ An error occurred: {str(e)}")
         finally:
-            os.remove(audio_path)
-            if os.path.exists(tts_path):
+            if os.path.exists(audio_path):
+                os.remove(audio_path)
+            if 'tts_path' in locals() and os.path.exists(tts_path):
                 os.remove(tts_path)
 
 # ---------------------------
