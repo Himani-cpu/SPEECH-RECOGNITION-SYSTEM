@@ -3,7 +3,5 @@ pydub
 gtts
 deep-translator
 audio-recorder-streamlit
-torch
-transformers
-whisper
 openai-whisper
+transformers
