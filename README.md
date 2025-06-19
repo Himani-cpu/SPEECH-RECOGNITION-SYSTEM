@@ -45,6 +45,10 @@
    
    └── 📝 **app.py**            # App Logic
 
+ 🔮 **.streamlit/**
+  
+   └── 📎 **config.toml**
+
 🔖 **logo.png**                 # App logo
 
 🎼 **requirements.txt**         # Python Dependencies
