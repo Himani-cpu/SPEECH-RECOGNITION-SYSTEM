@@ -13,8 +13,8 @@ audio_recorder_streamlit
 deep-translator
 
 # Whisper + Torch for transcription
-whisper
-torch==2.2.2
+git+https://github.com/openai/whisper.git
+torch
 
 # Ensure compatible dependencies
 markdown-it-py==2.2.0
