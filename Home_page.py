@@ -6,7 +6,7 @@ import os
 st.set_page_config(page_title="Voicera", page_icon="🎤", layout="centered")
 
 # ----- Logo -----
-logo_path = "D:/speech_to_text/logo.png"
+logo_path = "C:\Users\dines\Documents\projects\speech_to_text\logo.png"
 if os.path.exists(logo_path):
     logo_base64 = base64.b64encode(open(logo_path, "rb").read()).decode()
     logo_html = f"<img src='data:image/png;base64,{logo_base64}' width='200' style='margin-bottom: 10px;'/>"
