@@ -38,13 +38,13 @@ Welcome to **Voicera**, your intelligent assistant that converts voice into tran
 ## 📂 Folder Structure
 
 
-📜 **Home_page.py**             # 🌟 Main entry (landing page)
+📜 **Home_page.py**             # Landing Page
 
 📰 **pages/**
    
-   └── 📝 **app.py**            # 🎤 App logic here
+   └── 📝 **app.py**            # App Logic
 
-🔖 **logo.png**                 # 🖼️ App logo
+🔖 **logo.png**                 # App logo
 
 🎼 **requirements.txt**
 
