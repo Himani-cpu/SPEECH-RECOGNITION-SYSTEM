@@ -1,10 +1,22 @@
+# Core app and UI
 streamlit==1.27.2
+rich<14
+
+# Voice and audio processing
 gTTS
 pydub
 SpeechRecognition
-deep-translator
-audio_recorder_streamlit
-whisper
 ffmpeg-python
+audio_recorder_streamlit
+
+# Translation
+deep-translator
+
+# Whisper + Torch for transcription
+whisper
 torch==2.2.2
-rich<14
+
+# Ensure compatible dependencies
+markdown-it-py==2.2.0
+mdurl==0.1.2
+pygments==2.15.1
