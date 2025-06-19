@@ -1,17 +1,20 @@
 # main app logic 
 
-import base64
-import streamlit as st
-import numpy as np
-import tempfile
 import os
 import time
-import speech_recognition as sr
-from pydub import AudioSegment
+import base64
+import tempfile
 from datetime import datetime
+
+import streamlit as st
+import numpy as np
+from pydub import AudioSegment
+from audio_recorder_streamlit import audio_recorder
 from deep_translator import GoogleTranslator
 from gtts import gTTS
-from audio_recorder_streamlit import audio_recorder
+
+import torch
+import whisper
 
 # ---------------------------
 # --- Streamlit Page Config ---
@@ -189,16 +192,22 @@ audio_bytes = audio_recorder(text="Click to Record", recording_color="#e8b62c", 
 # --- Transcription Function ---
 # ---------------------------
 
+# Load Whisper model (cached to avoid reloading)
+@st.cache_resource
+def load_whisper_model():
+    return whisper.load_model("base")  # Options: tiny, base, small, medium, large
+
+model = load_whisper_model()
+
 def transcribe_audio(file_path):
-    r = sr.Recognizer()
-    with sr.AudioFile(file_path) as source:
-        audio = r.record(source)
-    return r.recognize_google(audio, language="hi-IN")
+    result = model.transcribe(file_path)
+    return result["text"]
 
 # ---------------------------
 # --- Process Audio ---
 # ---------------------------
 
+# --- Process Audio ---
 if audio_bytes or uploaded_file:
     with st.spinner("⏳ Processing..."):
         with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as temp_audio:
@@ -216,17 +225,18 @@ if audio_bytes or uploaded_file:
         try:
             start = time.time()
             original_text = transcribe_audio(audio_path)
-            translated_text = GoogleTranslator(source='auto', target=selected_lang).translate(original_text)
+            if selected_lang == "en":
+                translated_text = original_text
+            else:
+                translated_text = GoogleTranslator(source="auto", target=selected_lang).translate(original_text)
             end = time.time()
 
             st.success("✅ Transcription & Translation Complete!")
             st.markdown(f"⏱️ **Time Taken:** `{round(end - start, 2)} sec`")
             st.text_area("📝 Translated Text", translated_text, height=200)
 
-            # Download transcript
             st.download_button("📅 Download Transcript", translated_text, file_name="voicera_transcript.txt")
 
-            # TTS and Audio Output
             tts = gTTS(translated_text, lang=selected_lang)
             tts_path = f"tts_{int(time.time())}.mp3"
             tts.save(tts_path)
@@ -236,19 +246,16 @@ if audio_bytes or uploaded_file:
                 st.audio(tts_bytes, format="audio/mp3")
                 st.download_button("🔊 Download Audio", tts_bytes, file_name="voicera_tts.mp3")
 
-            # Save to dashboard
             timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             st.session_state.dashboard_data.append({
                 "Time": timestamp,
-                "Input Language": "Auto Detected",
+                "Input Language": "Auto Detected (Whisper)",
                 "Output Language": lang_choice,
                 "Transcript": translated_text
             })
 
-        except sr.UnknownValueError:
-            st.warning("🥴 Could not understand the audio.")
-        except sr.RequestError:
-            st.error("🙅 API request failed.")
+        except Exception as e:
+            st.error(f"❌ An error occurred: {str(e)}")
         finally:
             os.remove(audio_path)
             if os.path.exists(tts_path):
