@@ -1,20 +1,19 @@
 # main app logic 
 
-import os
-import time
 import base64
-import tempfile
-from datetime import datetime
-
 import streamlit as st
 import numpy as np
+import tempfile
+import os
+import time
+import speech_recognition as sr
 from pydub import AudioSegment
-from audio_recorder_streamlit import audio_recorder
+from datetime import datetime
 from deep_translator import GoogleTranslator
 from gtts import gTTS
+from audio_recorder_streamlit import audio_recorder
+import whisper  
 
-import torch
-import whisper
 
 # ---------------------------
 # --- Streamlit Page Config ---
@@ -197,9 +196,8 @@ audio_bytes = audio_recorder(text="Click to Record", recording_color="#e8b62c", 
 def load_whisper_model():
     return whisper.load_model("base")  # Options: tiny, base, small, medium, large
 
-model = load_whisper_model()
-
 def transcribe_audio(file_path):
+    model = whisper.load_model("base")
     result = model.transcribe(file_path)
     return result["text"]
 
