@@ -13,7 +13,7 @@
 **MENTOR*: NEELA SANTOSH
 
 
-## Welcome to **Voicera**, your intelligent assistant that converts voice into transcribed and translated text, supporting multiple languages and audio playback. 
+## Welcome to Voicera, your intelligent assistant that converts voice into transcribed and translated text, supporting multiple languages and audio playback. 
 
 ## 🪄 Features
 
@@ -47,9 +47,9 @@
 
 🔖 **logo.png**                 # App logo
 
-🎼 **requirements.txt**
+🎼 **requirements.txt**         # Python Dependencies
 
-📓 **README.md**
+📓 **README.md**                # Project Description and Usage
 
 
 ## 📱 How to Run the App
