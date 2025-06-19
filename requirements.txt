@@ -1,7 +1,8 @@
-streamlit
+streamlit==1.35.0
+gTTS
 pydub
-gtts
+SpeechRecognition
 deep-translator
-audio-recorder-streamlit
-openai-whisper
-transformers
+audio_recorder_streamlit
+whisper
+ffmpeg-python
