@@ -63,10 +63,10 @@ if os.path.exists(logo_path):
     logo_base64 = base64.b64encode(open(logo_path, "rb").read()).decode()
     st.markdown(f"""
         <div style='text-align: center;'>
-            <img src='data:image/png;base64,{logo_base64}' width='180'/>
-            <h1 style='margin-bottom: 0;'>Voicera: Where every Voice finds its Words</h1>
-            <p style='font-style: italic; font-size: 22px;'>Speak it. See it. Voicera it.</p>
-            <p style='font-size: 16px; max-width: 600px; margin: auto;'>Voicera is your smart AI-assistant that turns your voice into accurate text using speech recognition. Record audio, stop, and download your transcript instantly.</p>
+            <img src='data:image/png;base64,{logo_base64}' width='140'/>
+            <h1 style='margin-bottom: 0; font-size: 22px;'>Voicera: Where every Voice finds its Words</h1>
+            <p style='font-style: italic; font-size: 18px;'>Speak it. See it. Voicera it.</p>
+            <p style='font-size: 12px; max-width: 600px; margin: auto;'>Voicera is your smart AI-assistant that turns your voice into accurate text using speech recognition. Record audio, stop, and download your transcript instantly.</p>
         </div>
     """, unsafe_allow_html=True)
 
@@ -185,7 +185,7 @@ uploaded_file = st.file_uploader("Upload .mp3 or .wav file", type=["mp3", "wav"]
 # ---------------------------
 
 st.markdown("### 🎙️ Record using Microphone")
-audio_bytes = audio_recorder(text="Click to Record", recording_color="#e8b62c", neutral_color="#6aa36f", icon_name="microphone")
+audio_bytes = audio_recorder(text="Click to Record", recording_color="#ea2525", neutral_color="#278cf6", icon_name="microphone")
 
 # ---------------------------
 # --- Transcription Function ---
